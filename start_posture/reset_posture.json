@@ -1,0 +1,147 @@
+{
+ "name": "HandDemo reset / start posture (2026-11-26)",
+ "description": "Standard reset state for every replay in this repo (swap_v1, cup_v1, box_v1) and for policy inference: both arms raised with elbows bent and back, hands at the body sides above the table and outside the head-camera view; torso and head exactly as during the human-demo recordings (identical in all 21 episodes, max deviation 1e-5 rad) and as in the head-camera calibration.",
+ "units": "rad (joint_state names of the robot); *_deg = same in degrees",
+ "joint_state": {
+  "torso_joint_1": 0.001409,
+  "torso_joint_2": 0.951995,
+  "torso_joint_3": -1.754768,
+  "torso_joint_4": 0.836354,
+  "torso_joint_5": -0.001405,
+  "torso_joint_6": -0.000399,
+  "right_arm_joint_1": 0.611575,
+  "right_arm_joint_2": -0.633929,
+  "right_arm_joint_3": -0.204763,
+  "right_arm_joint_4": -1.376325,
+  "right_arm_joint_5": 0.599991,
+  "right_arm_joint_6": -1.570795,
+  "right_arm_joint_7": -2.121326,
+  "left_arm_joint_1": 0.755203,
+  "left_arm_joint_2": 0.566331,
+  "left_arm_joint_3": 0.182847,
+  "left_arm_joint_4": -1.572574,
+  "left_arm_joint_5": -0.629712,
+  "left_arm_joint_6": -1.213122,
+  "left_arm_joint_7": 1.950175,
+  "head_joint_1": 0.028172,
+  "head_joint_2": 0.78475,
+  "right_gripper_finger_joint_1": 0.0,
+  "left_gripper_finger_joint_1": 0.0
+ },
+ "joint_state_deg": {
+  "torso_joint_1": 0.081,
+  "torso_joint_2": 54.545,
+  "torso_joint_3": -100.541,
+  "torso_joint_4": 47.92,
+  "torso_joint_5": -0.08,
+  "torso_joint_6": -0.023,
+  "right_arm_joint_1": 35.041,
+  "right_arm_joint_2": -36.321,
+  "right_arm_joint_3": -11.732,
+  "right_arm_joint_4": -78.858,
+  "right_arm_joint_5": 34.377,
+  "right_arm_joint_6": -90.0,
+  "right_arm_joint_7": -121.543,
+  "left_arm_joint_1": 43.27,
+  "left_arm_joint_2": 32.448,
+  "left_arm_joint_3": 10.476,
+  "left_arm_joint_4": -90.102,
+  "left_arm_joint_5": -36.08,
+  "left_arm_joint_6": -69.507,
+  "left_arm_joint_7": 111.737,
+  "head_joint_1": 1.614,
+  "head_joint_2": 44.963,
+  "right_gripper_finger_joint_1": 0.0,
+  "left_gripper_finger_joint_1": 0.0
+ },
+ "groups": {
+  "torso": [
+   "torso_joint_1",
+   "torso_joint_2",
+   "torso_joint_3",
+   "torso_joint_4",
+   "torso_joint_5",
+   "torso_joint_6"
+  ],
+  "head": [
+   "head_joint_1",
+   "head_joint_2"
+  ],
+  "left_arm": [
+   "left_arm_joint_1",
+   "left_arm_joint_2",
+   "left_arm_joint_3",
+   "left_arm_joint_4",
+   "left_arm_joint_5",
+   "left_arm_joint_6",
+   "left_arm_joint_7"
+  ],
+  "right_arm": [
+   "right_arm_joint_1",
+   "right_arm_joint_2",
+   "right_arm_joint_3",
+   "right_arm_joint_4",
+   "right_arm_joint_5",
+   "right_arm_joint_6",
+   "right_arm_joint_7"
+  ],
+  "grippers": [
+   "right_gripper_finger_joint_1",
+   "left_gripper_finger_joint_1"
+  ]
+ },
+ "ee_pose_at_reset": {
+  "left": {
+   "frame": "base (URDF link ee_left = /robot/left_end_effector_pose)",
+   "xyz": [
+    0.13863,
+    0.38557,
+    0.76547
+   ],
+   "quat_xyzw": [
+    -0.506852,
+    -0.444406,
+    0.10492,
+    0.731161
+   ]
+  },
+  "right": {
+   "frame": "base (URDF link ee_right = /robot/right_end_effector_pose)",
+   "xyz": [
+    0.14308,
+    -0.4079,
+    0.78004
+   ],
+   "quat_xyzw": [
+    0.631974,
+    -0.368845,
+    -0.068714,
+    0.678115
+   ]
+  }
+ },
+ "tolerances_recommended": {
+  "head_rad": 0.005,
+  "torso_rad": 0.005,
+  "arms_rad": 0.01,
+  "why": "the head-camera calibration (camera pose = FK(link_head_2) @ T_head2_cam) and every trajectory assume exactly these head/torso angles; 0.005 rad (0.29 deg) of head pitch moves the image by ~1.5 px / ~3 mm on the table"
+ },
+ "grippers_note": "recorded value 0 (closed). Each trajectory's first row sets the left gripper to its open width (approach phase); a closed gripper at reset is fine, it opens during the approach (or open it first to the first row's value).",
+ "checks": {
+  "arms_not_visible_in_head_camera": true,
+  "hands_above_table_m": 0.05,
+  "hands_behind_table_near_edge_m": "~0.10",
+  "body_clearance_m": {
+   "left": 0.069,
+   "right": 0.074
+  },
+  "joint_margin_deg": {
+   "left": 20.5,
+   "right": 10.0
+  }
+ },
+ "source": {
+  "posture_design": "real_rby1/scripts/design_posture.py -> out/real_prep/start_posture/designed_posture.json",
+  "torso_head": "recorded joint_state of the 2026-11-26 demos (cup_v1/swap_v1/box_v1)"
+ }
+}
