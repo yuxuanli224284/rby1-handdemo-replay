@@ -1,12 +1,12 @@
 # RBY1 人手示教 → 机器人回放轨迹（真机部署包）
 
-这个仓库里是 RBY1-A（v1.2）**左臂**的回放轨迹，由头部相机录制的人手示教转换而来，已经在 MuJoCo 物理仿真中逐个回放验证过。当前包含两个任务：
+这个仓库里是 RBY1-A（v1.2）**左臂**的回放轨迹，由头部相机录制的人手示教转换而来，已经在 MuJoCo 物理仿真中逐个回放验证过。当前包含三个任务：
 
 | 任务 | 内容 | 可用 episode |
 |---|---|---|
 | `swap_v1` | 一根手指穿过刷子的环形手柄，捏住环管把刷子拿起来 | ep0–7（8/8） |
 | `cup_v1` | 捏住杯沿（一指在杯内、一指在杯外），把杯子拿起来 | ep0、1、2、3、7、8、9（7/10） |
-| `box_v1` | 推纸箱 | 处理中，完成后加入 |
+| `box_v1` | 夹爪闭合，用指尖推纸箱的左侧面，把纸箱往中间推 17–23 cm | ep0、1、2（3/3） |
 
 被拒的 episode（cup_v1 ep4–6）和原因见 [REJECTED_EPISODES.md](REJECTED_EPISODES.md)。
 
@@ -34,6 +34,8 @@ examples/replay_reference.py   # 读取 CSV、检查起始姿态、生成平滑�
 REJECTED_EPISODES.md, cup_v1_failure_positions.jpg
 ```
 
+box_v1 的摆放参考图有所不同：绿色是纸箱起始位置，蓝色是人手推完后纸箱的位置，黄色是接触点和推的方向（见第 4b 节）。
+
 ---
 
 ## 2. 关节轨迹文件格式（`trajectories/joint/*_joint.csv`）
@@ -42,8 +44,8 @@ REJECTED_EPISODES.md, cup_v1_failure_positions.jpg
 
 | 列 | 单位 | 说明 |
 |---|---|---|
-| `time_s` | s | 采样时刻，从 0 开始。**间隔不均匀**（133–382 ms），因为各段做了不同程度的时间缩放；执行时按这个时间轴的真实时间走 |
-| `phase` | — | `approach`（从初始姿态接近）→ `insert`（夹爪插入）→ `dwell`（停留）→ `close`（闭合，手臂不动）→ `transport`（抬起 / 搬运） |
+| `time_s` | s | 采样时刻，从 0 开始。swap_v1 / cup_v1 **间隔不均匀**（133–382 ms），因为各段做了不同程度的时间缩放；box_v1 间隔均匀（133 ms）。执行时按这个时间轴的真实时间走 |
+| `phase` | — | 抓取任务（swap_v1、cup_v1）：`approach`（从初始姿态接近）→ `insert`（夹爪插入）→ `dwell`（停留）→ `close`（闭合，手臂不动）→ `transport`（抬起 / 搬运）。<br>推箱子（box_v1）：`approach` → `contact`（贴到箱子侧面）→ `dwell`（停留）→ `push`（推）→ `hold`（停住）→ `retreat`（后退 6 cm、抬高 8 cm）→ `final_hold`（静止） |
 | `left_arm_joint_1..7` | rad | 左臂 7 个关节，名字和机器人 `joint_state` 一致（对应 URDF `left_arm_0..6`） |
 | `right_arm_joint_1..7`、`torso_joint_1..6`、`head_joint_1..2` | rad | **全程固定不变**：右臂 = 新初始姿态，躯干 / 头部 = 录制时的值 |
 | `left_gripper_finger_joint_1` | m | 夹爪目标，按 `joint_state` 里的定义写（**符号待真机确认**，见第 5 节） |
@@ -77,6 +79,14 @@ REJECTED_EPISODES.md, cup_v1_failure_positions.jpg
 | swap_v1 ep6 | 78.5 | 11.2 | 0.530, 0.102（−2°） |
 | swap_v1 ep7 | 50.2 | 13.5 | 0.532, 0.110（0°） |
 
+box_v1（夹爪全程闭合，没有闭合时刻；"开始推"是 `push` 段开始的时刻）：
+
+| episode | 时长 (s) | 贴到箱子 / 开始推 (s) | 纸箱起始位置 x, y (m)，朝向 | 人手推完后的位置 x, y (m)，朝向 |
+|---|---|---|---|---|
+| box_v1 ep0 | 21.2 | 5.1 / 7.5 | 0.527, 0.198，3.8° | 0.548, 0.014，9.2° |
+| box_v1 ep1 | 22.4 | 5.5 / 7.9 | 0.521, 0.197，1.8° | 0.520, 0.027，8.3° |
+| box_v1 ep2 | 25.1 | 5.5 / 7.9 | 0.518, 0.199，1.8° | 0.534, −0.031，4.8° |
+
 ---
 
 ## 2b. 关节限位、速度 / 加速度上限、频率，以及和人手视频的时间对应
@@ -109,7 +119,7 @@ REJECTED_EPISODES.md, cup_v1_failure_positions.jpg
 
 ### 频率和执行时钟
 
-- 文件里的采样点**不是固定频率**：相邻采样点间隔 133–382 ms，因为每一段的时间缩放不同。
+- swap_v1 / cup_v1 的采样点**不是固定频率**：相邻采样点间隔 133–382 ms，因为每一段的时间缩放不同。box_v1 是固定的 133 ms（7.5 Hz）。
 - **执行时请严格按 `time_s` 的真实时间走（1.0 倍）**，不要加速。如果想更快，需要重新生成轨迹并重新检查，不能直接把时间轴压短。
 - 建议控制器以 **≥ 100 Hz** 发送插值后的关节指令（PCHIP 或样条，见 `examples/replay_reference.py`）。仿真验证在 15 Hz 的网格上做插值，物理步长是 2 ms。
 - 人手示教视频和所有标注都是 **15 Hz**。
@@ -120,6 +130,7 @@ REJECTED_EPISODES.md, cup_v1_failure_positions.jpg
 1. **接近段（`approach`）**：这一段是从新初始姿态规划出来的，不跟随人手，所以没有对应的人手帧，`human_frame = −1`。
 2. **插入、停留、闭合段**：对应人手捏住物体前后的那几帧。停留和闭合段的人手帧会重复，因为机器人在这段时间里静止、夹爪在闭合。
 3. **搬运段（`transport`）**：按人手动作走，但为了满足速度和加速度上限，每条 episode 都整体放慢了 1.1–2.9 倍，然后再乘 0.5 倍速。
+4. **box_v1**：`push` 段按人手推的过程走（0.5 倍速）；`contact`、`dwell`、`hold`、`retreat`、`final_hold` 是规划出来的固定动作，对应的人手帧会重复或停在最后一帧。
 
 为了方便对齐，关节文件和 EE 文件的每一行都附带两列：
 - `human_frame`：这个采样点对应的人手视频帧号（15 Hz，−1 表示没有对应帧）；
@@ -171,9 +182,20 @@ python -I /home/gaoyiche/HandDemo/real_rby1/scripts/placement_guide.py compare <
 
 桌子：桌面离地 66.5 cm，桌面尺寸 1.4 × 0.6 m。轨迹按录制时的桌子位置生成，桌子挪动后请重新录制或重新生成。
 
+### 4b. box_v1 的摆放
+
+- `placement_guide.py` 和 `replan.py` **不支持 box_v1**，只能按参考图手动摆放：
+  - `placement/box_v1_ep<i>_raw.jpg` 是原始画面；
+  - `placement/box_v1_ep<i>.jpg` 是标注图。绿色是纸箱起始位置（摆在这里），蓝色是人手推完后的位置，黄色是接触点和推的方向。
+- 起始位置（机器人 base 坐标系）：ep0 (0.527, 0.198) m，朝向 3.8°；ep1 (0.521, 0.197)，1.8°；ep2 (0.518, 0.199)，1.8°。纸箱的长边（30 cm）大致沿机器人的左右方向放，见参考图。
+- 纸箱模型是 30 × 19 cm 底面、**17 cm 高**。用户给的尺寸是 30 × 17 × 19 cm，17 和 19 哪个是高，是按图像边缘拟合选的（17 cm 高的拟合误差更小），没有实测确认。
+- 推是**开环**的：仿真里纸箱质量假设 0.4 kg、摩擦系数假设 0.4，都没有实测。真实纸箱最后停的位置可能和仿真不同。
+
 ---
 
 ## 5. 夹爪
+
+**box_v1 的夹爪全程闭合**（每一行都是 `gripper_closed = 1`、开度 0），用闭合的指尖推箱子。下面的说明针对 swap_v1 和 cup_v1。
 
 - `gripper_closed = 0` 时是张开状态，张开量见 `left_gripper_open_m`（每根手指的张开量，单位 m）。在接近、插入、停留阶段保持这个开度。
 - `gripper_closed = 1` 时闭合，并一直保持到结束。仿真里用 40 N 的力夹住物体。
@@ -194,14 +216,20 @@ python -I /home/gaoyiche/HandDemo/real_rby1/scripts/placement_guide.py compare <
 
 每个关节文件都**直接从 CSV 读回**，用 PCHIP 插值后在 MuJoCo 物理仿真中完整回放了一遍（`verification/VERIFICATION.txt`，视频在 `verification/videos/`）：
 
-- 任务成功：15/15。物体被抬起 6.5–26 cm，结束时仍在夹爪中。
-- 手臂和身体的物理接触为 0 帧；机器人和桌子的接触为 0 帧。
+- 抓取任务成功：15/15。物体被抬起 6.5–26 cm，结束时仍在夹爪中。
+- 推箱子成功：3/3。成功标准是纸箱最终位置和人手推完的位置相差 ≤ 3 cm、朝向相差 ≤ 10°，并且没有倒。
+  - 实际结果：位置误差 1.2 / 0.2 / 1.1 cm；仿真推动的距离 18.7 / 17.3 / 23.4 cm，人手是 18.5 / 17.0 / 23.1 cm。
+  - **注意，朝向没有复现**：人手推的时候纸箱转了 3.0–6.5°，仿真里基本不转（−1° 到 +2°）。10° 的朝向容差比人手转的角度还大，所以这项检查分辨不出这个差别。
+  - 只有左夹爪的一根手指碰到纸箱，接触点在被推那一面（左侧面）的中间高度；纸箱最大倾斜 0.03°，没有离开桌面。
+- 手臂和身体的物理接触为 0 帧；机器人和桌子的接触为 0 帧（三个任务都是）。
 - 逐采样点的几何检查（关节路径加密到 0.005 rad 一步）：
   - 离身体 ≥ 3 cm，实际最小 4.46 cm；
   - 离关节限位 ≥ 5°（按 URDF 和 MuJoCo 限位的交集）；
   - 手臂在桌面以上 ≥ 5 mm。
-- 速度和加速度：插值后峰值速度 ≤ URDF 上限的 25%，峰值加速度 ≤ 44%。
+- 速度和加速度：插值后峰值速度 ≤ URDF 上限的 25%，峰值加速度 ≤ 44%（box_v1 是 38–44%）。
+- box_v1 另外检查了：接近时整条手臂离纸箱 ≥ 2.3 cm；除夹爪以外的连杆离纸箱 ≥ 7.4 cm；夹爪压进纸箱规划表面的深度 ≤ 5.7 mm（上限 7 mm）。
 - 仿真中关节跟踪误差 0.007–0.020 rad（位置伺服 kp 4000 / kv 400，带速度前馈）。
+- box_v1 由另一个独立的检查程序从 CSV 重算了一遍：几何检查和物理回放的结果都和上面一致。
 - CSV 和 npz 完全一致；EE 列和正运动学的结果吻合到 0.001 mm。
 
 ---
@@ -212,8 +240,8 @@ python -I /home/gaoyiche/HandDemo/real_rby1/scripts/placement_guide.py compare <
 2. **不放物体，先空跑**：低速运行，手放在急停上，观察接近段（从身体两侧绕到物体上方）是否离桌子、身体都有足够距离。
 3. 确认夹爪方向（第 5 节）。
 4. 按参考图放好物体（第 4 节），再完整运行。
-5. 建议先试这几条：`swap_v1` ep2、ep4、ep3；`cup_v1` ep0、ep2。
-6. **轨迹结束时物体还拿在手里**：没有放下和回位的动作，结束后请手动处理。
+5. 建议先试这几条：`swap_v1` ep2、ep4、ep3；`cup_v1` ep0、ep2；`box_v1` ep1。
+6. **抓取任务结束时物体还拿在手里**：没有放下和回位的动作，结束后请手动处理。box_v1 结束时手臂停在纸箱后方 6 cm、上方 8 cm 的位置，也不会回到初始姿态。
 
 已知的风险和局限：
 - 头部相机支架不在碰撞模型里。
@@ -224,6 +252,6 @@ python -I /home/gaoyiche/HandDemo/real_rby1/scripts/placement_guide.py compare <
 
 ## 9. 来源（服务器路径）
 
-- 生成和检查代码：`/home/gaoyiche/HandDemo/real_rby1/scripts/`，主要是 `safe_traj.py`、`export_real.py`、`add_ee_pose.py`、`split_for_robot.py`、`verify_for_robot.py`、`sim_task_replay2.py`、`placement_guide.py`、`replan.py`。
+- 生成和检查代码：`/home/gaoyiche/HandDemo/real_rby1/scripts/`，主要是 `safe_traj.py`（box_v1 用 `--mode push`）、`export_real.py`、`box_placement_image.py`、`add_ee_pose.py`、`split_for_robot.py`、`verify_for_robot.py`、`sim_task_replay2.py`、`placement_guide.py`、`replan.py`。
 - 完整输出：`/home/gaoyiche/HandDemo/real_rby1/out/real_prep/for_robot_newstart/`；未压缩的验证视频也在这里。
 - 原始示教数据：`/data/yicheng/HandDemo_uploads/`。

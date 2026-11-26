@@ -1,0 +1,41 @@
+{
+ "success": true,
+ "final_pos_err_m": 0.0125,
+ "final_yaw_err_deg": -5.85,
+ "final_tilt_deg": 0.0,
+ "knocked_over": false,
+ "box_final": [
+  0.5357,
+  0.0116,
+  3.4
+ ],
+ "target_final": [
+  0.548,
+  0.014,
+  9.25
+ ],
+ "sim_push_dist_m": 0.1866,
+ "human_push_dist_m": 0.1852,
+ "box_moved_before_t_move_m": 0.0,
+ "box_track_err_mean_m": null,
+ "box_track_err_max_m": null,
+ "frames_touching": 77,
+ "n_frames": 319,
+ "tolerances": {
+  "pos_m": 0.03,
+  "yaw_deg": 10.0,
+  "tilt_deg": 10.0
+ },
+ "assumed": {
+  "box_mass_kg": 0.4,
+  "box_mu": 0.4
+ },
+ "safety": {
+  "min_arm_table_clearance_m": 0.0508,
+  "self_contact_frames": 0,
+  "robot_table_contact_frames": 0,
+  "max_track_err_rad": 0.0105,
+  "max_track_err_frame": 27,
+  "self_contact_pairs": []
+ }
+}

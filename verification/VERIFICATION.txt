@@ -14,3 +14,8 @@ swap_v1_ep4_s0.5       PASS  lift   6.5 cm  self-contact 0  table-contact 0  arm
 swap_v1_ep5_s0.5       PASS  lift  14.3 cm  self-contact 0  table-contact 0  arm-table 0.0088 m  track 0.0199 rad  v 0.23  a 0.336  csv-npz 5.0e-07  ee-fk 0.001 mm
 swap_v1_ep6_s0.5       PASS  lift  16.7 cm  self-contact 0  table-contact 0  arm-table 0.016 m  track 0.0107 rad  v 0.249  a 0.353  csv-npz 5.0e-07  ee-fk 0.001 mm
 swap_v1_ep7_s0.5       PASS  lift   9.2 cm  self-contact 0  table-contact 0  arm-table 0.0613 m  track 0.0088 rad  v 0.249  a 0.253  csv-npz 5.0e-07  ee-fk 0.001 mm
+
+box_v1 (push task) joint files, physics replay rebuilt from CSV, new start posture, velocity feed-forward in the sim servo, 2026-11-26 04:48; success = final box pose within 3 cm / 10 deg of the human-pushed (tracked) pose and tilt < 10 deg (not knocked over)
+box_v1_ep0_s0.5        PASS  box pos err  1.2 cm  yaw err  -5.8 deg  tilt 0.0 deg  (tol 3 cm / 10 deg / 10 deg)  self-contact 0  table-contact 0  arm-table 0.0508 m  track 0.0105 rad  v 0.239  a 0.157  csv-npz 5.0e-07  ee-fk 0.001 mm
+box_v1_ep1_s0.5        PASS  box pos err  0.2 cm  yaw err  -4.5 deg  tilt 0.0 deg  (tol 3 cm / 10 deg / 10 deg)  self-contact 0  table-contact 0  arm-table 0.0515 m  track 0.011 rad  v 0.248  a 0.157  csv-npz 5.0e-07  ee-fk 0.001 mm
+box_v1_ep2_s0.5        PASS  box pos err  1.1 cm  yaw err  -4.0 deg  tilt 0.0 deg  (tol 3 cm / 10 deg / 10 deg)  self-contact 0  table-contact 0  arm-table 0.0515 m  track 0.011 rad  v 0.245  a 0.157  csv-npz 5.0e-07  ee-fk 0.001 mm
