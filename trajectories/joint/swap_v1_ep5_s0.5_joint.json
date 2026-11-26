@@ -1,11 +1,11 @@
 {
  "demo": "swap_v1",
  "episode": "5",
- "source": "/home/gaoyiche/HandDemo/real_rby1/out/real_prep/final_newstart/swap_v1/safe_traj_5_s0.5.npz",
- "created": "2026-11-26T04:05:30",
+ "source": "/home/gaoyiche/HandDemo/real_rby1/out/real_prep/staging_1126table/swap_v1/safe_traj_5_s0.5.npz",
+ "created": "2026-11-26T06:31:18",
  "speed_factor": 0.5,
- "n_samples": 241,
- "duration_s": 47.05924426847809,
+ "n_samples": 242,
+ "duration_s": 47.19257760181142,
  "sample_period_s": {
   "min": 0.13333333333333286,
   "max": 0.22198485801494883,
@@ -51,6 +51,9 @@
   "margin_deg": 5.0,
   "self_clear_m": 0.03,
   "table_clear_m": 0.005,
+  "table_height_margin_m": 0.03,
+  "table_top_base_m": 0.6493,
+  "table_height_dense_hz": 100.0,
   "source": {
    "vel_rad_s": [
     1.5708,
@@ -94,34 +97,40 @@
    "margin_deg": 5.0,
    "self_clear_m": 0.03,
    "table_obj_clear_m": 0.005,
+   "table_height_margin_m": 0.03,
+   "table_top_base_m": 0.6493,
    "finger_vel_m_s": 0.05
   }
  },
  "safety_recheck": {
-  "n_samples": 241,
-  "duration_s": 47.059,
+  "n_samples": 242,
+  "duration_s": 47.193,
   "min_body_dist_cm": 4.64,
-  "min_joint_margin_deg": 12.94,
+  "min_joint_margin_deg": 15.78,
   "min_table_clear_cm": 0.89,
   "min_obj_clear_approach_cm": 3.05,
-  "max_speed_ratio": 0.46,
+  "min_table_height_dense_cm": 4.78,
+  "min_table_height_dense_at_s": 6.8,
+  "min_table_height_dense_phase": "approach",
+  "right_arm_table_height_cm": 4.85,
+  "max_speed_ratio": 0.48,
   "max_acc_ratio": 0.25,
   "max_speed_rad_s": [
-   0.586,
+   0.569,
    0.174,
-   0.248,
-   0.694,
-   1.356,
-   1.445,
-   0.429
+   0.155,
+   0.735,
+   1.398,
+   1.376,
+   0.502
   ],
   "max_acc_rad_s2": [
    0.705,
    0.452,
-   0.921,
+   0.853,
    1.25,
-   1.154,
-   1.229,
+   1.189,
+   1.174,
    1.204
   ],
   "n_fail": 0,
@@ -131,8 +140,8 @@
   "segments": {
    "approach": {
     "scale": 1.0,
-    "samples": 51,
-    "duration_s": 3.333
+    "samples": 52,
+    "duration_s": 3.4
    },
    "insert": {
     "scale": 1.138,
@@ -156,7 +165,7 @@
    }
   },
   "approach_vias": [
-   "lift to table+0.20 (ik err 0.3 mm) | traverse joint | descend 0.10 (ik err 6.8 mm)"
+   "lift to table+0.15 (ik err 0.2 mm) | traverse joint | descend 0.15 (ik err 6.5 mm)"
   ],
   "approach_open_hold_samples": 0,
   "gripper_open_s": 0.54,
@@ -259,8 +268,8 @@
   "closed_target_m": 0.0,
   "joint_state_target": "ASSUMED -(per-finger opening): bag left_gripper_finger_joint_1 = URDF gripper_finger_l1 (range [-0.05, 0]); verify the sign on the robot",
   "closed_norm": "1 - opening / 0.05 (0 = fully open, 1 = closed)",
-  "close_command_sample": 63,
-  "close_command_time_s": 8.56578812196674
+  "close_command_sample": 64,
+  "close_command_time_s": 8.699121455300073
  },
  "start_posture": {
   "torso_joint_1": 0.0014086803769939923,

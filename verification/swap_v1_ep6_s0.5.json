@@ -8,7 +8,7 @@
   "gripper_open": 0.0
  },
  "ee_vs_fk": {
-  "pos_max_mm": 0.0014,
+  "pos_max_mm": 0.0012,
   "ang_max_deg": 0.0002
  },
  "replay": {
@@ -17,40 +17,40 @@
   "samples": 269,
   "start_posture_dev_rad": 4.5364625678168125e-07,
   "fixed_joint_dev_rad": 4.478667339213871e-07,
-  "peak_speed_frac": 0.249,
+  "peak_speed_frac": 0.248,
   "peak_acc_frac": 0.353,
   "sim": {
    "success": true,
    "final_lift_m": 0.1674,
-   "max_lift_m": 0.1858,
+   "max_lift_m": 0.1856,
    "gripper_touching_at_end": true,
    "frames_touching": 1010,
    "frames_closed": 1011,
    "n_frames": 1179,
    "object_final": [
     0.501,
-    0.179,
+    0.18,
     0.817
    ],
    "safety": {
-    "min_arm_table_clearance_m": 0.016,
+    "min_arm_table_clearance_m": 0.062,
     "self_contact_frames": 0,
     "robot_table_contact_frames": 0,
-    "max_track_err_rad": 0.0107,
-    "max_track_err_frame": 63,
+    "max_track_err_rad": 0.0117,
+    "max_track_err_frame": 59,
     "self_contact_pairs": []
    },
    "finger_after_close": [
     0.0254,
     0.0137,
     0.0137,
-    0.0136,
-    0.0136,
-    0.0136,
-    0.0136,
-    0.0136,
-    0.0136,
-    0.0136
+    0.0137,
+    0.0137,
+    0.0137,
+    0.0137,
+    0.0137,
+    0.0137,
+    0.0137
    ]
   }
  },

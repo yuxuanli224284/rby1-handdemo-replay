@@ -1,0 +1,608 @@
+{
+ "margin_m": 0.03,
+ "h_tab_base_m": 0.6493,
+ "dense_hz": 100.0,
+ "results": [
+  {
+   "file": "box_v1_ep0_s0.5_joint.csv",
+   "duration_s": 21.2,
+   "min_left_clear_cm": 5.05,
+   "at_s": 0.0,
+   "at_phase": "approach",
+   "lowest_body": "link_left_arm_5",
+   "lowest_point_base_m": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "lowest_outside_table_cm": 16.7,
+   "min_clear_over_table_cm": 5.31,
+   "start_left_clear_cm": 5.05,
+   "start_left_outside_table_cm": 16.7,
+   "start_left_point": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "right_arm_clear_cm": 4.85,
+   "right_lowest_body": "link_right_arm_5",
+   "right_outside_table_cm": 18.3,
+   "time_below_margin_s": 0.0,
+   "intervals_below_margin": [],
+   "min_clear_by_phase_cm": {
+    "approach": 5.05,
+    "contact": 5.42,
+    "dwell": 5.4,
+    "push": 5.31,
+    "hold": 5.42,
+    "retreat": 5.42,
+    "final_hold": 13.42
+   },
+   "passes": true
+  },
+  {
+   "file": "box_v1_ep1_s0.5_joint.csv",
+   "duration_s": 22.4,
+   "min_left_clear_cm": 5.05,
+   "at_s": 0.0,
+   "at_phase": "approach",
+   "lowest_body": "link_left_arm_5",
+   "lowest_point_base_m": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "lowest_outside_table_cm": 16.5,
+   "min_clear_over_table_cm": 5.38,
+   "start_left_clear_cm": 5.05,
+   "start_left_outside_table_cm": 16.5,
+   "start_left_point": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "right_arm_clear_cm": 4.85,
+   "right_lowest_body": "link_right_arm_5",
+   "right_outside_table_cm": 18.2,
+   "time_below_margin_s": 0.0,
+   "intervals_below_margin": [],
+   "min_clear_by_phase_cm": {
+    "approach": 5.05,
+    "contact": 5.41,
+    "dwell": 5.4,
+    "push": 5.38,
+    "hold": 5.42,
+    "retreat": 5.42,
+    "final_hold": 13.42
+   },
+   "passes": true
+  },
+  {
+   "file": "box_v1_ep2_s0.5_joint.csv",
+   "duration_s": 25.07,
+   "min_left_clear_cm": 5.05,
+   "at_s": 0.0,
+   "at_phase": "approach",
+   "lowest_body": "link_left_arm_5",
+   "lowest_point_base_m": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "lowest_outside_table_cm": 16.5,
+   "min_clear_over_table_cm": 5.38,
+   "start_left_clear_cm": 5.05,
+   "start_left_outside_table_cm": 16.5,
+   "start_left_point": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "right_arm_clear_cm": 4.85,
+   "right_lowest_body": "link_right_arm_5",
+   "right_outside_table_cm": 18.3,
+   "time_below_margin_s": 0.0,
+   "intervals_below_margin": [],
+   "min_clear_by_phase_cm": {
+    "approach": 5.05,
+    "contact": 5.41,
+    "dwell": 5.41,
+    "push": 5.38,
+    "hold": 5.43,
+    "retreat": 5.43,
+    "final_hold": 13.41
+   },
+   "passes": true
+  },
+  {
+   "file": "cup_v1_ep0_s0.5_joint.csv",
+   "duration_s": 29.89,
+   "min_left_clear_cm": 5.05,
+   "at_s": 0.0,
+   "at_phase": "approach",
+   "lowest_body": "link_left_arm_5",
+   "lowest_point_base_m": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "lowest_outside_table_cm": 16.5,
+   "min_clear_over_table_cm": 6.02,
+   "start_left_clear_cm": 5.05,
+   "start_left_outside_table_cm": 16.5,
+   "start_left_point": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "right_arm_clear_cm": 4.85,
+   "right_lowest_body": "link_right_arm_5",
+   "right_outside_table_cm": 18.4,
+   "time_below_margin_s": 0.0,
+   "intervals_below_margin": [],
+   "min_clear_by_phase_cm": {
+    "approach": 5.05,
+    "insert": 6.02,
+    "dwell": 6.02,
+    "close": 6.02,
+    "transport": 6.02
+   },
+   "passes": true
+  },
+  {
+   "file": "cup_v1_ep1_s0.5_joint.csv",
+   "duration_s": 26.45,
+   "min_left_clear_cm": 5.05,
+   "at_s": 0.0,
+   "at_phase": "approach",
+   "lowest_body": "link_left_arm_5",
+   "lowest_point_base_m": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "lowest_outside_table_cm": 16.5,
+   "min_clear_over_table_cm": 5.09,
+   "start_left_clear_cm": 5.05,
+   "start_left_outside_table_cm": 16.5,
+   "start_left_point": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "right_arm_clear_cm": 4.85,
+   "right_lowest_body": "link_right_arm_5",
+   "right_outside_table_cm": 18.4,
+   "time_below_margin_s": 0.0,
+   "intervals_below_margin": [],
+   "min_clear_by_phase_cm": {
+    "approach": 5.05,
+    "insert": 6.02,
+    "dwell": 6.02,
+    "close": 6.02,
+    "transport": 5.09
+   },
+   "passes": true
+  },
+  {
+   "file": "cup_v1_ep2_s0.5_joint.csv",
+   "duration_s": 29.95,
+   "min_left_clear_cm": 5.05,
+   "at_s": 0.0,
+   "at_phase": "approach",
+   "lowest_body": "link_left_arm_5",
+   "lowest_point_base_m": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "lowest_outside_table_cm": 16.4,
+   "min_clear_over_table_cm": 5.97,
+   "start_left_clear_cm": 5.05,
+   "start_left_outside_table_cm": 16.4,
+   "start_left_point": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "right_arm_clear_cm": 4.85,
+   "right_lowest_body": "link_right_arm_5",
+   "right_outside_table_cm": 18.4,
+   "time_below_margin_s": 0.0,
+   "intervals_below_margin": [],
+   "min_clear_by_phase_cm": {
+    "approach": 5.05,
+    "insert": 6.02,
+    "dwell": 6.02,
+    "close": 6.02,
+    "transport": 5.97
+   },
+   "passes": true
+  },
+  {
+   "file": "cup_v1_ep3_s0.5_joint.csv",
+   "duration_s": 54.34,
+   "min_left_clear_cm": 4.83,
+   "at_s": 11.95,
+   "at_phase": "transport",
+   "lowest_body": "ee_finger_l1",
+   "lowest_point_base_m": [
+    0.478,
+    0.3,
+    0.698
+   ],
+   "lowest_outside_table_cm": 0.0,
+   "min_clear_over_table_cm": 4.83,
+   "start_left_clear_cm": 5.05,
+   "start_left_outside_table_cm": 16.5,
+   "start_left_point": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "right_arm_clear_cm": 4.85,
+   "right_lowest_body": "link_right_arm_5",
+   "right_outside_table_cm": 18.4,
+   "time_below_margin_s": 0.0,
+   "intervals_below_margin": [],
+   "min_clear_by_phase_cm": {
+    "approach": 5.05,
+    "insert": 6.02,
+    "dwell": 6.02,
+    "close": 6.02,
+    "transport": 4.83
+   },
+   "passes": true
+  },
+  {
+   "file": "cup_v1_ep7_s0.5_joint.csv",
+   "duration_s": 19.35,
+   "min_left_clear_cm": 5.05,
+   "at_s": 0.0,
+   "at_phase": "approach",
+   "lowest_body": "link_left_arm_5",
+   "lowest_point_base_m": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "lowest_outside_table_cm": 16.4,
+   "min_clear_over_table_cm": 5.62,
+   "start_left_clear_cm": 5.05,
+   "start_left_outside_table_cm": 16.4,
+   "start_left_point": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "right_arm_clear_cm": 4.85,
+   "right_lowest_body": "link_right_arm_5",
+   "right_outside_table_cm": 18.3,
+   "time_below_margin_s": 0.0,
+   "intervals_below_margin": [],
+   "min_clear_by_phase_cm": {
+    "approach": 5.05,
+    "insert": 6.02,
+    "dwell": 6.02,
+    "close": 6.02,
+    "transport": 6.02
+   },
+   "passes": true
+  },
+  {
+   "file": "cup_v1_ep8_s0.5_joint.csv",
+   "duration_s": 23.08,
+   "min_left_clear_cm": 5.05,
+   "at_s": 0.0,
+   "at_phase": "approach",
+   "lowest_body": "link_left_arm_5",
+   "lowest_point_base_m": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "lowest_outside_table_cm": 16.5,
+   "min_clear_over_table_cm": 6.02,
+   "start_left_clear_cm": 5.05,
+   "start_left_outside_table_cm": 16.5,
+   "start_left_point": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "right_arm_clear_cm": 4.85,
+   "right_lowest_body": "link_right_arm_5",
+   "right_outside_table_cm": 18.3,
+   "time_below_margin_s": 0.0,
+   "intervals_below_margin": [],
+   "min_clear_by_phase_cm": {
+    "approach": 5.05,
+    "insert": 6.02,
+    "dwell": 6.02,
+    "close": 6.02,
+    "transport": 6.02
+   },
+   "passes": true
+  },
+  {
+   "file": "cup_v1_ep9_s0.5_joint.csv",
+   "duration_s": 30.83,
+   "min_left_clear_cm": 4.6,
+   "at_s": 11.07,
+   "at_phase": "insert",
+   "lowest_body": "ee_finger_l2",
+   "lowest_point_base_m": [
+    0.494,
+    0.214,
+    0.695
+   ],
+   "lowest_outside_table_cm": 0.0,
+   "min_clear_over_table_cm": 4.6,
+   "start_left_clear_cm": 5.05,
+   "start_left_outside_table_cm": 16.4,
+   "start_left_point": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "right_arm_clear_cm": 4.85,
+   "right_lowest_body": "link_right_arm_5",
+   "right_outside_table_cm": 18.4,
+   "time_below_margin_s": 0.0,
+   "intervals_below_margin": [],
+   "min_clear_by_phase_cm": {
+    "approach": 5.05,
+    "insert": 4.6,
+    "dwell": 4.6,
+    "close": 5.9,
+    "transport": 5.88
+   },
+   "passes": true
+  },
+  {
+   "file": "swap_v1_ep0_s0.5_joint.csv",
+   "duration_s": 47.17,
+   "min_left_clear_cm": 5.05,
+   "at_s": 0.0,
+   "at_phase": "approach",
+   "lowest_body": "link_left_arm_5",
+   "lowest_point_base_m": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "lowest_outside_table_cm": 16.4,
+   "min_clear_over_table_cm": 7.74,
+   "start_left_clear_cm": 5.05,
+   "start_left_outside_table_cm": 16.4,
+   "start_left_point": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "right_arm_clear_cm": 4.85,
+   "right_lowest_body": "link_right_arm_5",
+   "right_outside_table_cm": 18.5,
+   "time_below_margin_s": 0.0,
+   "intervals_below_margin": [],
+   "min_clear_by_phase_cm": {
+    "approach": 5.05,
+    "insert": 10.18,
+    "dwell": 10.18,
+    "close": 10.18,
+    "transport": 7.74
+   },
+   "passes": true
+  },
+  {
+   "file": "swap_v1_ep1_s0.5_joint.csv",
+   "duration_s": 30.08,
+   "min_left_clear_cm": 5.05,
+   "at_s": 0.0,
+   "at_phase": "approach",
+   "lowest_body": "link_left_arm_5",
+   "lowest_point_base_m": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "lowest_outside_table_cm": 16.5,
+   "min_clear_over_table_cm": 10.89,
+   "start_left_clear_cm": 5.05,
+   "start_left_outside_table_cm": 16.5,
+   "start_left_point": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "right_arm_clear_cm": 4.85,
+   "right_lowest_body": "link_right_arm_5",
+   "right_outside_table_cm": 18.5,
+   "time_below_margin_s": 0.0,
+   "intervals_below_margin": [],
+   "min_clear_by_phase_cm": {
+    "approach": 5.05,
+    "insert": 10.89,
+    "dwell": 10.89,
+    "close": 10.89,
+    "transport": 10.89
+   },
+   "passes": true
+  },
+  {
+   "file": "swap_v1_ep3_s0.5_joint.csv",
+   "duration_s": 92.82,
+   "min_left_clear_cm": 5.05,
+   "at_s": 0.0,
+   "at_phase": "approach",
+   "lowest_body": "link_left_arm_5",
+   "lowest_point_base_m": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "lowest_outside_table_cm": 16.5,
+   "min_clear_over_table_cm": 7.04,
+   "start_left_clear_cm": 5.05,
+   "start_left_outside_table_cm": 16.5,
+   "start_left_point": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "right_arm_clear_cm": 4.85,
+   "right_lowest_body": "link_right_arm_5",
+   "right_outside_table_cm": 18.3,
+   "time_below_margin_s": 0.0,
+   "intervals_below_margin": [],
+   "min_clear_by_phase_cm": {
+    "approach": 5.05,
+    "insert": 7.18,
+    "dwell": 7.18,
+    "close": 9.09,
+    "transport": 7.04
+   },
+   "passes": true
+  },
+  {
+   "file": "swap_v1_ep4_s0.5_joint.csv",
+   "duration_s": 48.67,
+   "min_left_clear_cm": 5.05,
+   "at_s": 0.0,
+   "at_phase": "approach",
+   "lowest_body": "link_left_arm_5",
+   "lowest_point_base_m": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "lowest_outside_table_cm": 16.5,
+   "min_clear_over_table_cm": 7.18,
+   "start_left_clear_cm": 5.05,
+   "start_left_outside_table_cm": 16.5,
+   "start_left_point": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "right_arm_clear_cm": 4.85,
+   "right_lowest_body": "link_right_arm_5",
+   "right_outside_table_cm": 18.4,
+   "time_below_margin_s": 0.0,
+   "intervals_below_margin": [],
+   "min_clear_by_phase_cm": {
+    "approach": 5.05,
+    "insert": 7.18,
+    "dwell": 7.18,
+    "close": 9.09,
+    "transport": 7.85
+   },
+   "passes": true
+  },
+  {
+   "file": "swap_v1_ep5_s0.5_joint.csv",
+   "duration_s": 47.19,
+   "min_left_clear_cm": 4.78,
+   "at_s": 6.8,
+   "at_phase": "approach",
+   "lowest_body": "link_left_arm_5",
+   "lowest_point_base_m": [
+    0.41,
+    0.386,
+    0.697
+   ],
+   "lowest_outside_table_cm": 0.0,
+   "min_clear_over_table_cm": 4.78,
+   "start_left_clear_cm": 5.05,
+   "start_left_outside_table_cm": 16.4,
+   "start_left_point": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "right_arm_clear_cm": 4.85,
+   "right_lowest_body": "link_right_arm_5",
+   "right_outside_table_cm": 18.5,
+   "time_below_margin_s": 0.0,
+   "intervals_below_margin": [],
+   "min_clear_by_phase_cm": {
+    "approach": 4.78,
+    "insert": 4.78,
+    "dwell": 5.65,
+    "close": 5.66,
+    "transport": 5.41
+   },
+   "passes": true
+  },
+  {
+   "file": "swap_v1_ep6_s0.5_joint.csv",
+   "duration_s": 78.55,
+   "min_left_clear_cm": 5.05,
+   "at_s": 0.0,
+   "at_phase": "approach",
+   "lowest_body": "link_left_arm_5",
+   "lowest_point_base_m": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "lowest_outside_table_cm": 16.5,
+   "min_clear_over_table_cm": 6.88,
+   "start_left_clear_cm": 5.05,
+   "start_left_outside_table_cm": 16.5,
+   "start_left_point": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "right_arm_clear_cm": 4.85,
+   "right_lowest_body": "link_right_arm_5",
+   "right_outside_table_cm": 18.4,
+   "time_below_margin_s": 0.0,
+   "intervals_below_margin": [],
+   "min_clear_by_phase_cm": {
+    "approach": 5.05,
+    "insert": 9.31,
+    "dwell": 9.31,
+    "close": 9.71,
+    "transport": 8.9
+   },
+   "passes": true
+  },
+  {
+   "file": "swap_v1_ep7_s0.5_joint.csv",
+   "duration_s": 50.17,
+   "min_left_clear_cm": 5.05,
+   "at_s": 0.0,
+   "at_phase": "approach",
+   "lowest_body": "link_left_arm_5",
+   "lowest_point_base_m": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "lowest_outside_table_cm": 16.5,
+   "min_clear_over_table_cm": 6.61,
+   "start_left_clear_cm": 5.05,
+   "start_left_outside_table_cm": 16.5,
+   "start_left_point": [
+    0.061,
+    0.452,
+    0.7
+   ],
+   "right_arm_clear_cm": 4.85,
+   "right_lowest_body": "link_right_arm_5",
+   "right_outside_table_cm": 18.5,
+   "time_below_margin_s": 0.0,
+   "intervals_below_margin": [],
+   "min_clear_by_phase_cm": {
+    "approach": 5.05,
+    "insert": 9.23,
+    "dwell": 9.23,
+    "close": 9.71,
+    "transport": 8.9
+   },
+   "passes": true
+  }
+ ]
+}

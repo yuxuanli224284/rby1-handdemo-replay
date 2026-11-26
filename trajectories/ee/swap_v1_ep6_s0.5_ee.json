@@ -1,8 +1,8 @@
 {
  "demo": "swap_v1",
  "episode": "6",
- "source": "/home/gaoyiche/HandDemo/real_rby1/out/real_prep/final_newstart/swap_v1/safe_traj_6_s0.5.npz",
- "created": "2026-11-26T04:05:26",
+ "source": "/home/gaoyiche/HandDemo/real_rby1/out/real_prep/staging_1126table/swap_v1/safe_traj_6_s0.5.npz",
+ "created": "2026-11-26T06:31:41",
  "speed_factor": 0.5,
  "n_samples": 269,
  "duration_s": 78.54706567953299,
@@ -51,6 +51,9 @@
   "margin_deg": 5.0,
   "self_clear_m": 0.03,
   "table_clear_m": 0.005,
+  "table_height_margin_m": 0.03,
+  "table_top_base_m": 0.6493,
+  "table_height_dense_hz": 100.0,
   "source": {
    "vel_rad_s": [
     1.5708,
@@ -94,6 +97,8 @@
    "margin_deg": 5.0,
    "self_clear_m": 0.03,
    "table_obj_clear_m": 0.005,
+   "table_height_margin_m": 0.03,
+   "table_top_base_m": 0.6493,
    "finger_vel_m_s": 0.05
   }
  },
@@ -102,18 +107,22 @@
   "duration_s": 78.547,
   "min_body_dist_cm": 4.99,
   "min_joint_margin_deg": 5.0,
-  "min_table_clear_cm": 1.75,
+  "min_table_clear_cm": 6.33,
   "min_obj_clear_approach_cm": 3.12,
-  "max_speed_ratio": 0.496,
+  "min_table_height_dense_cm": 5.05,
+  "min_table_height_dense_at_s": 0.0,
+  "min_table_height_dense_phase": "approach",
+  "right_arm_table_height_cm": 4.85,
+  "max_speed_ratio": 0.494,
   "max_acc_ratio": 0.25,
   "max_speed_rad_s": [
-   0.36,
+   0.399,
    0.23,
    0.155,
-   0.518,
-   0.594,
-   0.784,
-   0.519
+   0.494,
+   0.653,
+   0.853,
+   0.517
   ],
   "max_acc_rad_s2": [
    0.567,
@@ -122,7 +131,7 @@
    1.25,
    0.997,
    1.173,
-   1.056
+   0.834
   ],
   "n_fail": 0,
   "approved": true
@@ -156,7 +165,7 @@
    }
   },
   "approach_vias": [
-   "lift to table+0.15 (ik err 0.2 mm) | traverse joint | descend 0.10 (ik err 2.4 mm)"
+   "lift to table+0.15 (ik err 0.2 mm) | traverse joint | descend 0.15 (ik err 2.3 mm)"
   ],
   "approach_open_hold_samples": 0,
   "gripper_open_s": 0.76,
