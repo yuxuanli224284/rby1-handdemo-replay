@@ -1,0 +1,317 @@
+{
+ "demo": "swap_v1",
+ "episode": "6",
+ "source": "/home/gaoyiche/HandDemo/real_rby1/out/real_prep/final_newstart/swap_v1/safe_traj_6_s0.5.npz",
+ "created": "2026-11-26T04:05:26",
+ "speed_factor": 0.5,
+ "n_samples": 269,
+ "duration_s": 78.54706567953299,
+ "sample_period_s": {
+  "min": 0.13333333333333286,
+  "max": 0.3822503818577516,
+  "note": "non-uniform: segments are time-scaled; interpolate between samples"
+ },
+ "limits": {
+  "vel_rad_s": [
+   1.570796327,
+   1.570796327,
+   1.570796327,
+   1.570796327,
+   3.141592654,
+   3.141592654,
+   1.047197551
+  ],
+  "acc_rad_s2": [
+   5.0,
+   5.0,
+   5.0,
+   5.0,
+   5.0,
+   5.0,
+   5.0
+  ],
+  "joint_lo": [
+   -2.35619,
+   -0.017453293,
+   -2.0944,
+   -2.61799,
+   -3.141592654,
+   -1.570796327,
+   -2.70526034
+  ],
+  "joint_hi": [
+   2.35619,
+   3.14159,
+   2.0944,
+   0.01,
+   3.141592654,
+   1.919862177,
+   2.70526034
+  ],
+  "margin_deg": 5.0,
+  "self_clear_m": 0.03,
+  "table_clear_m": 0.005,
+  "source": {
+   "vel_rad_s": [
+    1.5708,
+    1.5708,
+    1.5708,
+    1.5708,
+    3.1416,
+    3.1416,
+    1.0472
+   ],
+   "acc_rad_s2": [
+    5.0,
+    5.0,
+    5.0,
+    5.0,
+    5.0,
+    5.0,
+    5.0
+   ],
+   "frac_of_urdf": 0.5,
+   "acc_source": "URDF",
+   "range_lo": [
+    -2.3562,
+    -0.0175,
+    -2.0944,
+    -2.618,
+    -3.1416,
+    -1.5708,
+    -2.7053
+   ],
+   "range_hi": [
+    2.3562,
+    3.1416,
+    2.0944,
+    0.01,
+    3.1416,
+    1.9199,
+    2.7053
+   ],
+   "range_source": "URDF n MuJoCo",
+   "margin_deg": 5.0,
+   "self_clear_m": 0.03,
+   "table_obj_clear_m": 0.005,
+   "finger_vel_m_s": 0.05
+  }
+ },
+ "safety_recheck": {
+  "n_samples": 269,
+  "duration_s": 78.547,
+  "min_body_dist_cm": 4.99,
+  "min_joint_margin_deg": 5.0,
+  "min_table_clear_cm": 1.75,
+  "min_obj_clear_approach_cm": 3.12,
+  "max_speed_ratio": 0.496,
+  "max_acc_ratio": 0.25,
+  "max_speed_rad_s": [
+   0.36,
+   0.23,
+   0.155,
+   0.518,
+   0.594,
+   0.784,
+   0.519
+  ],
+  "max_acc_rad_s2": [
+   0.567,
+   0.706,
+   0.853,
+   1.25,
+   0.997,
+   1.173,
+   1.056
+  ],
+  "n_fail": 0,
+  "approved": true
+ },
+ "timing": {
+  "segments": {
+   "approach": {
+    "scale": 1.0,
+    "samples": 72,
+    "duration_s": 4.733
+   },
+   "insert": {
+    "scale": 1.0,
+    "samples": 8,
+    "duration_s": 0.467
+   },
+   "dwell": {
+    "scale": 1.0,
+    "samples": 4,
+    "duration_s": 0.2
+   },
+   "close": {
+    "scale": 1.0,
+    "samples": 13,
+    "duration_s": 0.8
+   },
+   "transport": {
+    "scale": 2.867,
+    "samples": 172,
+    "duration_s": 32.682
+   }
+  },
+  "approach_vias": [
+   "lift to table+0.15 (ik err 0.2 mm) | traverse joint | descend 0.10 (ik err 2.4 mm)"
+  ],
+  "approach_open_hold_samples": 0,
+  "gripper_open_s": 0.76,
+  "close_hold_s": 0.8,
+  "human_timed_duration_s": 19.467
+ },
+ "grasp": {
+  "q_grasp_orig": [
+   -0.621,
+   0.3927,
+   -0.0585,
+   -0.8105,
+   4.8026,
+   -1.505,
+   -0.398
+  ],
+  "wrapped": true,
+  "q_ok": false,
+  "insert_ori_change_deg": 13.21,
+  "kept": false,
+  "reselected": true,
+  "same_grasp_pose": true,
+  "new_q": [
+   -0.6205,
+   0.357,
+   0.0283,
+   -0.8106,
+   1.5752,
+   1.5432,
+   -0.3962
+  ],
+  "flip": true,
+  "rank": 78,
+  "g": [
+   0.4834,
+   0.0895,
+   0.7662
+  ],
+  "theta_deg": 190.0,
+  "psi_deg": 0.0,
+  "phi_deg": -20,
+  "open_width": 0.076,
+  "window_ok_after": true
+ },
+ "ik": {
+  "pos_err_max_mm": 12.85,
+  "pos_err_mean_mm": 0.41,
+  "insert_dwell_pos_err_max_mm": 0.84,
+  "insert_dwell_ori_err_max_deg": 0.01,
+  "at_grasp_pos_err_mm": 0.0,
+  "at_grasp_ori_err_deg": 0.0,
+  "frames_over_1cm": 3,
+  "transport_pos_err_max_mm": 12.85
+ },
+ "joint_names": {
+  "left_arm": [
+   "left_arm_joint_1",
+   "left_arm_joint_2",
+   "left_arm_joint_3",
+   "left_arm_joint_4",
+   "left_arm_joint_5",
+   "left_arm_joint_6",
+   "left_arm_joint_7"
+  ],
+  "urdf": [
+   "left_arm_0",
+   "left_arm_1",
+   "left_arm_2",
+   "left_arm_3",
+   "left_arm_4",
+   "left_arm_5",
+   "left_arm_6"
+  ],
+  "gripper": [
+   "left_gripper_finger_joint_1"
+  ],
+  "fixed": [
+   "torso_joint_1",
+   "torso_joint_2",
+   "torso_joint_3",
+   "torso_joint_4",
+   "torso_joint_5",
+   "torso_joint_6",
+   "right_arm_joint_1",
+   "right_arm_joint_2",
+   "right_arm_joint_3",
+   "right_arm_joint_4",
+   "right_arm_joint_5",
+   "right_arm_joint_6",
+   "right_arm_joint_7",
+   "head_joint_1",
+   "head_joint_2",
+   "right_gripper_finger_joint_1"
+  ]
+ },
+ "gripper": {
+  "open_m_before_close": 0.038,
+  "closed_target_m": 0.0,
+  "joint_state_target": "ASSUMED -(per-finger opening): bag left_gripper_finger_joint_1 = URDF gripper_finger_l1 (range [-0.05, 0]); verify the sign on the robot",
+  "closed_norm": "1 - opening / 0.05 (0 = fully open, 1 = closed)",
+  "close_command_sample": 84,
+  "close_command_time_s": 11.2
+ },
+ "start_posture": {
+  "torso_joint_1": 0.0014086803769939923,
+  "torso_joint_2": 0.9519945521332661,
+  "torso_joint_3": -1.7547677058410232,
+  "torso_joint_4": 0.8363536638267188,
+  "torso_joint_5": -0.0014048833948457605,
+  "torso_joint_6": -0.00039488614341610565,
+  "right_arm_joint_1": 0.6115747874840423,
+  "right_arm_joint_2": -0.6339285725390609,
+  "right_arm_joint_3": -0.2047634226632655,
+  "right_arm_joint_4": -1.3763251843233535,
+  "right_arm_joint_5": 0.5999906683912498,
+  "right_arm_joint_6": -1.5707948210274851,
+  "right_arm_joint_7": -2.121325794440599,
+  "left_arm_joint_1": 0.7552030017205933,
+  "left_arm_joint_2": 0.5663310986627523,
+  "left_arm_joint_3": 0.18284693682920272,
+  "left_arm_joint_4": -1.5725741857371611,
+  "left_arm_joint_5": -0.6297124536462568,
+  "left_arm_joint_6": -1.2131216346648857,
+  "left_arm_joint_7": 1.950174577234319,
+  "head_joint_1": 0.028171557169519797,
+  "head_joint_2": 0.7847500565145665,
+  "right_gripper_finger_joint_1": 0.0,
+  "left_gripper_finger_joint_1": -3.1086e-05
+ },
+ "approved": true,
+ "content": "left EE pose trajectory, frame base, URDF link ee_left (= /robot/left_end_effector_pose)",
+ "start_joint_state": {
+  "torso_joint_1": 0.0014086803769939923,
+  "torso_joint_2": 0.9519945521332661,
+  "torso_joint_3": -1.7547677058410232,
+  "torso_joint_4": 0.8363536638267188,
+  "torso_joint_5": -0.0014048833948457605,
+  "torso_joint_6": -0.00039488614341610565,
+  "right_arm_joint_1": 0.6115747874840423,
+  "right_arm_joint_2": -0.6339285725390609,
+  "right_arm_joint_3": -0.2047634226632655,
+  "right_arm_joint_4": -1.3763251843233535,
+  "right_arm_joint_5": 0.5999906683912498,
+  "right_arm_joint_6": -1.5707948210274851,
+  "right_arm_joint_7": -2.121325794440599,
+  "left_arm_joint_1": 0.7552030017205933,
+  "left_arm_joint_2": 0.5663310986627523,
+  "left_arm_joint_3": 0.18284693682920272,
+  "left_arm_joint_4": -1.5725741857371611,
+  "left_arm_joint_5": -0.6297124536462568,
+  "left_arm_joint_6": -1.2131216346648857,
+  "left_arm_joint_7": 1.950174577234319,
+  "head_joint_1": 0.028171557169519797,
+  "head_joint_2": 0.7847500565145665,
+  "right_gripper_finger_joint_1": 0.0,
+  "left_gripper_finger_joint_1": -0.038
+ }
+}

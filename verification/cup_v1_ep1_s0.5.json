@@ -1,0 +1,70 @@
+{
+ "file": "out/real_prep/verify_runs_newstart/cup_v1_ep1_s0.5/cup_v1_ep1_s0.5.csv",
+ "n_rows": 147,
+ "csv_vs_npz_max_abs": {
+  "time": 4.9374631089449394e-05,
+  "arm": 4.99308154378042e-07,
+  "all_joints": 4.99308154378042e-07,
+  "gripper_open": 0.0
+ },
+ "ee_vs_fk": {
+  "pos_max_mm": 0.0014,
+  "ang_max_deg": 0.0002
+ },
+ "replay": {
+  "export": "out/real_prep/verify_runs_newstart/cup_v1_ep1_s0.5/verification/cup_v1_ep1_s0.5_from_csv.npz",
+  "duration_s": 26.45,
+  "samples": 147,
+  "start_posture_dev_rad": 4.5364625678168125e-07,
+  "fixed_joint_dev_rad": 4.773591422240191e-07,
+  "peak_speed_frac": 0.247,
+  "peak_acc_frac": 0.335,
+  "sim": {
+   "success": true,
+   "final_lift_m": 0.2018,
+   "max_lift_m": 0.202,
+   "gripper_touching_at_end": true,
+   "frames_touching": 283,
+   "frames_closed": 284,
+   "n_frames": 397,
+   "object_final": [
+    0.467,
+    0.246,
+    0.851
+   ],
+   "safety": {
+    "min_arm_table_clearance_m": 0.0575,
+    "self_contact_frames": 0,
+    "robot_table_contact_frames": 0,
+    "max_track_err_rad": 0.0151,
+    "max_track_err_frame": 41,
+    "self_contact_pairs": []
+   },
+   "finger_after_close": [
+    0.0211,
+    0.0035,
+    0.0035,
+    0.0035,
+    0.0035,
+    0.0035,
+    0.0035,
+    0.0035,
+    0.0035,
+    0.0035
+   ]
+  }
+ },
+ "checks": {
+  "csv_matches_npz": true,
+  "ee_columns_match_fk": "True",
+  "starts_at_recorded_posture": true,
+  "task_success": true,
+  "no_self_contact": true,
+  "no_robot_table_contact": true,
+  "arm_above_table": true,
+  "tracking_ok": true,
+  "speed_ok": true,
+  "acc_ok": true
+ },
+ "pass": true
+}

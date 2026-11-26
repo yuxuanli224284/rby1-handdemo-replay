@@ -1,0 +1,16 @@
+Joint files, physics replay rebuilt from CSV, new start posture, velocity feed-forward in the sim servo, 2026-11-26 04:22
+cup_v1_ep0_s0.5        PASS  lift  19.4 cm  self-contact 0  table-contact 0  arm-table 0.0594 m  track 0.0071 rad  v 0.249  a 0.284  csv-npz 5.0e-07  ee-fk 0.001 mm
+cup_v1_ep1_s0.5        PASS  lift  20.2 cm  self-contact 0  table-contact 0  arm-table 0.0575 m  track 0.0151 rad  v 0.247  a 0.335  csv-npz 5.0e-07  ee-fk 0.001 mm
+cup_v1_ep2_s0.5        PASS  lift  22.1 cm  self-contact 0  table-contact 0  arm-table 0.0594 m  track 0.0077 rad  v 0.25  a 0.325  csv-npz 5.0e-07  ee-fk 0.001 mm
+cup_v1_ep3_s0.5        PASS  lift  26.2 cm  self-contact 0  table-contact 0  arm-table 0.056 m  track 0.0141 rad  v 0.249  a 0.357  csv-npz 5.0e-07  ee-fk 0.001 mm
+cup_v1_ep7_s0.5        PASS  lift  14.3 cm  self-contact 0  table-contact 0  arm-table 0.0595 m  track 0.0148 rad  v 0.249  a 0.285  csv-npz 5.0e-07  ee-fk 0.001 mm
+cup_v1_ep8_s0.5        PASS  lift  14.0 cm  self-contact 0  table-contact 0  arm-table 0.0596 m  track 0.0161 rad  v 0.249  a 0.294  csv-npz 5.0e-07  ee-fk 0.001 mm
+cup_v1_ep9_s0.5        PASS  lift  19.3 cm  self-contact 0  table-contact 0  arm-table 0.0446 m  track 0.0077 rad  v 0.248  a 0.344  csv-npz 5.0e-07  ee-fk 0.001 mm
+swap_v1_ep0_s0.5       PASS  lift  12.7 cm  self-contact 0  table-contact 0  arm-table 0.0849 m  track 0.0105 rad  v 0.251  a 0.28  csv-npz 5.0e-07  ee-fk 0.001 mm
+swap_v1_ep1_s0.5       PASS  lift  12.3 cm  self-contact 0  table-contact 0  arm-table 0.1024 m  track 0.0129 rad  v 0.247  a 0.295  csv-npz 5.0e-07  ee-fk 0.001 mm
+swap_v1_ep2_s0.5       PASS  lift  14.9 cm  self-contact 0  table-contact 0  arm-table 0.0486 m  track 0.0139 rad  v 0.249  a 0.284  csv-npz 5.0e-07  ee-fk 0.001 mm
+swap_v1_ep3_s0.5       PASS  lift  11.6 cm  self-contact 0  table-contact 0  arm-table 0.0651 m  track 0.009 rad  v 0.251  a 0.441  csv-npz 5.0e-07  ee-fk 0.001 mm
+swap_v1_ep4_s0.5       PASS  lift   6.5 cm  self-contact 0  table-contact 0  arm-table 0.0651 m  track 0.0076 rad  v 0.25  a 0.308  csv-npz 5.0e-07  ee-fk 0.001 mm
+swap_v1_ep5_s0.5       PASS  lift  14.3 cm  self-contact 0  table-contact 0  arm-table 0.0088 m  track 0.0199 rad  v 0.23  a 0.336  csv-npz 5.0e-07  ee-fk 0.001 mm
+swap_v1_ep6_s0.5       PASS  lift  16.7 cm  self-contact 0  table-contact 0  arm-table 0.016 m  track 0.0107 rad  v 0.249  a 0.353  csv-npz 5.0e-07  ee-fk 0.001 mm
+swap_v1_ep7_s0.5       PASS  lift   9.2 cm  self-contact 0  table-contact 0  arm-table 0.0613 m  track 0.0088 rad  v 0.249  a 0.253  csv-npz 5.0e-07  ee-fk 0.001 mm

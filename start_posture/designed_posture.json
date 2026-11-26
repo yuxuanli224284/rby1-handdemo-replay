@@ -1,0 +1,84 @@
+{
+ "targets_m": {
+  "hand": {
+   "x": 0.12,
+   "y": 0.4,
+   "z_above_table": 0.1
+  },
+  "elbow": {
+   "x": -0.05,
+   "y": 0.38,
+   "z_above_table": 0.18
+  }
+ },
+ "left": {
+  "q": [
+   0.7552,
+   0.56633,
+   0.18285,
+   -1.57257,
+   -0.62971,
+   -1.21312,
+   1.95017
+  ],
+  "ee_xyz": [
+   0.139,
+   0.386,
+   0.765
+  ],
+  "elbow_xyz": [
+   -0.121,
+   0.354,
+   0.941
+  ],
+  "visible_corners": 0,
+  "wrist_above_table_m": 0.05,
+  "near_edge_parts_above_table_m": 0.05,
+  "body_clearance_m": 0.069,
+  "joint_margin_deg": 20.5,
+  "ok": true
+ },
+ "right": {
+  "q": [
+   0.61157,
+   -0.63393,
+   -0.20476,
+   -1.37633,
+   0.59999,
+   -1.57079,
+   -2.12133
+  ],
+  "ee_xyz": [
+   0.143,
+   -0.408,
+   0.78
+  ],
+  "elbow_xyz": [
+   -0.086,
+   -0.379,
+   0.93
+  ],
+  "visible_corners": 0,
+  "wrist_above_table_m": 0.05,
+  "near_edge_parts_above_table_m": 0.074,
+  "body_clearance_m": 0.074,
+  "joint_margin_deg": 10.0,
+  "ok": true
+ },
+ "joint_state": {
+  "left_arm_joint_1": 0.7552030017205933,
+  "left_arm_joint_2": 0.5663310986627523,
+  "left_arm_joint_3": 0.18284693682920272,
+  "left_arm_joint_4": -1.5725741857371611,
+  "left_arm_joint_5": -0.6297124536462568,
+  "left_arm_joint_6": -1.2131216346648857,
+  "left_arm_joint_7": 1.950174577234319,
+  "right_arm_joint_1": 0.6115747874840423,
+  "right_arm_joint_2": -0.6339285725390609,
+  "right_arm_joint_3": -0.2047634226632655,
+  "right_arm_joint_4": -1.3763251843233535,
+  "right_arm_joint_5": 0.5999906683912498,
+  "right_arm_joint_6": -1.5707948210274851,
+  "right_arm_joint_7": -2.121325794440599
+ }
+}

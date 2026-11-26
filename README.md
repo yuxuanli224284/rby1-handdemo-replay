@@ -1,0 +1,164 @@
+# RBY1 人手示教 → 机器人回放轨迹（真机部署包）
+
+这个仓库里是 RBY1-A（v1.2）**左臂**的回放轨迹，由头部相机录制的人手示教转换而来，已经在 MuJoCo 物理仿真中逐个回放验证过。当前包含两个任务：
+
+| 任务 | 内容 | 可用 episode |
+|---|---|---|
+| `swap_v1` | 一根手指穿过刷子的环形手柄，捏住环管把刷子拿起来 | ep0–7（8/8） |
+| `cup_v1` | 捏住杯沿（一指在杯内、一指在杯外），把杯子拿起来 | ep0、1、2、3、7、8、9（7/10） |
+| `box_v1` | 推纸箱 | 处理中，完成后加入 |
+
+被拒的 episode（cup_v1 ep4–6）和原因见 [REJECTED_EPISODES.md](REJECTED_EPISODES.md)。
+
+所有轨迹都是**0.5 倍速**版本，日期 2026-11-26。
+
+---
+
+## 1. 目录结构
+
+```
+start_posture/
+  designed_posture.json        # 新的默认初始姿态（双臂抬起、肘部弯曲后收、不在头部相机视野内）
+  designed_posture_views.jpg   # 该姿态的渲染图（头部相机视角 + 5 个侧视角）
+trajectories/
+  joint/<task>_ep<i>_s0.5_joint.{csv,npz,json}   # ← 真机执行用：全身关节轨迹
+  ee/<task>_ep<i>_s0.5_ee.{csv,npz,json}         # 左臂末端位姿轨迹（训练用的动作标签，不要直接发给机器人，见第 6 节）
+placement/<task>_ep<i>.jpg     # 物体摆放参考：该 episode 示教第一帧 + 物体模型轮廓（绿）+ 抓取点和接近方向（黄）
+verification/
+  VERIFICATION.txt             # 每个关节文件的仿真回放结果汇总
+  videos/*_physics.mp4         # 每个关节文件的物理仿真回放视频（压缩版）
+  *.json                       # 每个文件的详细检查结果
+examples/replay_reference.py   # 读取 CSV、检查起始姿态、生成平滑的稠密指令流的参考代码（与 SDK 无关）
+REJECTED_EPISODES.md, cup_v1_failure_positions.jpg
+```
+
+---
+
+## 2. 关节轨迹文件格式（`trajectories/joint/*_joint.csv`）
+
+每一行是一个采样点，列如下：
+
+| 列 | 单位 | 说明 |
+|---|---|---|
+| `time_s` | s | 采样时刻，从 0 开始。**间隔不均匀**（约 67–280 ms），因为各段做了不同程度的时间缩放 |
+| `phase` | — | `approach`（从初始姿态接近）→ `insert`（夹爪插入）→ `dwell`（停留）→ `close`（闭合，手臂不动）→ `transport`（抬起 / 搬运） |
+| `left_arm_joint_1..7` | rad | 左臂 7 个关节，名字和机器人 `joint_state` 一致（对应 URDF `left_arm_0..6`） |
+| `right_arm_joint_1..7`、`torso_joint_1..6`、`head_joint_1..2` | rad | **全程固定不变**：右臂 = 新初始姿态，躯干 / 头部 = 录制时的值 |
+| `left_gripper_finger_joint_1` | m | 夹爪目标，按 `joint_state` 里的定义写（**符号待真机确认**，见第 5 节） |
+| `left_gripper_open_m` | m | 每根手指的张开量：0 = 闭合，0.05 = 全开 |
+| `left_gripper_closed_norm` | — | 0 = 全开，1 = 闭合 |
+| `gripper_closed` | 0/1 | 闭合指令。从第一个 1 开始一直保持闭合，中途不会再张开 |
+| `right_gripper_finger_joint_1` | m | 固定 |
+
+`*.npz` 内容和 CSV 相同（`time_s, q_all, all_names, q_left_arm, left_arm_names, gripper_*`），`*.json` 是元数据，包括所用的关节限位、速度和加速度上限、抓取信息、安全检查结果。
+
+**插值**：采样点之间请用平滑插值，例如 PCHIP 或样条，**不要零阶保持**。仿真验证用的就是 PCHIP（`examples/replay_reference.py` 里有实现）。
+
+各 episode 时长（0.5 倍速）：
+
+| episode | 时长 (s) | 闭合指令时刻 (s) | 物体位置 x, y (m，机器人 base 坐标) |
+|---|---|---|---|
+| cup_v1 ep0 | 29.9 | 11.3 | 0.454, 0.276 |
+| cup_v1 ep1 | 26.4 | 7.5 | 0.454, 0.281 |
+| cup_v1 ep2 | 30.0 | 11.5 | 0.453, 0.277 |
+| cup_v1 ep3 | 54.3 | 7.1 | 0.456, 0.273 |
+| cup_v1 ep7 | 19.3 | 8.3 | 0.514, 0.126 |
+| cup_v1 ep8 | 23.1 | 8.3 | 0.513, 0.127 |
+| cup_v1 ep9 | 30.8 | 11.7 | 0.514, 0.126 |
+| swap_v1 ep0 | 47.2 | 14.9 | 0.474, 0.280（刷子朝向 8°） |
+| swap_v1 ep1 | 30.1 | 10.1 | 0.484, 0.254（32°） |
+| swap_v1 ep2 | 74.7 | 6.8 | 0.476, 0.278（14°） |
+| swap_v1 ep3 | 92.8 | 13.5 | 0.582, 0.282（2°） |
+| swap_v1 ep4 | 48.7 | 13.3 | 0.586, 0.278（0°） |
+| swap_v1 ep5 | 47.1 | 8.6 | 0.536, 0.122（2°） |
+| swap_v1 ep6 | 78.5 | 11.2 | 0.530, 0.102（−2°） |
+| swap_v1 ep7 | 50.2 | 13.5 | 0.532, 0.110（0°） |
+
+---
+
+## 3. 初始姿态（必须先到位）
+
+每个文件的**第一行就是初始姿态**。所有文件的初始姿态都一样（`start_posture/designed_posture.json` 的 `joint_state` 字段）：
+
+```
+left_arm_joint_1..7  =  0.7552,  0.5663,  0.1828, -1.5726, -0.6297, -1.2131,  1.9502
+right_arm_joint_1..7 =  0.6116, -0.6339, -0.2048, -1.3763,  0.6000, -1.5708, -2.1213
+```
+
+- 躯干和头部保持录制时的值（见 CSV 第一行），整个过程都不动。
+- 这个姿态下，双手位于身体两侧、桌面上方约 12 cm、比桌子近边靠后约 10 cm，不在头部相机视野内，离身体至少 6.9 cm。
+- **先用你们自己的安全运动把机器人移到这个姿态**，然后再开始执行轨迹。轨迹本身不包含"从当前姿态到初始姿态"这一段。
+
+---
+
+## 4. 物体摆放
+
+轨迹是**开环**的：它是按照示教时物体的位置算出来的。物体必须放在该 episode 示教时的位置：
+- 参考图：`placement/<task>_ep<i>.jpg`。绿色轮廓是物体应在的位置，黄色是抓取点和接近方向。
+- 头部相机画面应该和参考图对齐。前提是头部角度和录制时一样（`head_joint_1/2` 见 CSV）。
+- 服务器上有对比工具：拍一张当前头部画面，配上当前的 `joint_state`，工具会算出物体需要挪动多少，并给出能否直接回放的判断。
+
+```
+python -I /home/gaoyiche/HandDemo/real_rby1/scripts/placement_guide.py compare <demo_raw_ep_dir> <scene.json> <actions.npz> <rim|ring_pinch> <新图片> <新joints.npz> <输出目录>
+```
+
+如果物体放不到原位，可以用服务器上的 `scripts/replan.py` 按新位置重新生成轨迹。重新生成后必须再过一遍 `safe_traj.py` 和 `export_real.py` 的安全检查。
+
+桌子：桌面离地 66.5 cm，桌面尺寸 1.4 × 0.6 m。轨迹按录制时的桌子位置生成，桌子挪动后请重新录制或重新生成。
+
+---
+
+## 5. 夹爪
+
+- `gripper_closed = 0` 时是张开状态，张开量见 `left_gripper_open_m`（每根手指的张开量，单位 m）。在接近、插入、停留阶段保持这个开度。
+- `gripper_closed = 1` 时闭合，并一直保持到结束。仿真里用 40 N 的力夹住物体。
+- **`left_gripper_finger_joint_1` 的符号还没有在真机上确认**：文件里假设"负值 = 张开"（URDF `gripper_finger_l1` 的范围是 [−0.05, 0]）。第一次执行前，请先发一个小幅张开指令确认方向。如果方向不对，请改用 `left_gripper_open_m` 或 `left_gripper_closed_norm` 来驱动夹爪。
+- 闭合阶段（`phase = close`）手臂静止 0.6–1.0 s，这段时间是按 URDF 手指速度 0.05 m/s 估算的。如果真机夹爪更慢，请加长等待时间，或者等夹爪闭合到位后再继续。
+
+---
+
+## 6. EE 文件（`trajectories/ee/`）
+
+- 内容：左臂末端位姿，即 URDF 连杆 `ee_left` 在 `base` 坐标系下的位姿，和机器人发布的 `/robot/left_end_effector_pose` 定义一致（用录制数据验证过，误差为 0）。位置单位是 m，四元数顺序为 x, y, z, w。另外包含夹爪列。
+- 用途：pi05 等使用 EE 动作的模型的**训练标签**。它和关节文件描述的是同一条运动。
+- **不建议直接把 EE 文件发给机器人执行**：左臂是 7 自由度，同一个 EE 位姿对应很多组关节角。仿真测试里，普通 IK 不给参考姿态时，15 条全部换到了别的关节解（和计划最多差 2.7 rad），有的加速度达到上限的 2.5 倍。如果一定要用 EE 指令执行，控制器必须同时拿关节文件作为零空间参考姿态。
+
+---
+
+## 7. 已经做过的验证
+
+每个关节文件都**直接从 CSV 读回**，用 PCHIP 插值后在 MuJoCo 物理仿真中完整回放了一遍（`verification/VERIFICATION.txt`，视频在 `verification/videos/`）：
+
+- 任务成功：15/15。物体被抬起 6.5–26 cm，结束时仍在夹爪中。
+- 手臂和身体的物理接触为 0 帧；机器人和桌子的接触为 0 帧。
+- 逐采样点的几何检查（关节路径加密到 0.005 rad 一步）：
+  - 离身体 ≥ 3 cm，实际最小 4.46 cm；
+  - 离关节限位 ≥ 5°（按 URDF 和 MuJoCo 限位的交集）；
+  - 手臂在桌面以上 ≥ 5 mm。
+- 速度和加速度：插值后峰值速度 ≤ URDF 上限的 25%，峰值加速度 ≤ 44%。
+- 仿真中关节跟踪误差 0.007–0.020 rad（位置伺服 kp 4000 / kv 400，带速度前馈）。
+- CSV 和 npz 完全一致；EE 列和正运动学的结果吻合到 0.001 mm。
+
+---
+
+## 8. 第一次上真机：建议的流程
+
+1. 机器人先到初始姿态（第 3 节），确认头部和躯干角度和 CSV 一致。
+2. **不放物体，先空跑**：低速运行，手放在急停上，观察接近段（从身体两侧绕到物体上方）是否离桌子、身体都有足够距离。
+3. 确认夹爪方向（第 5 节）。
+4. 按参考图放好物体（第 4 节），再完整运行。
+5. 建议先试这几条：`swap_v1` ep2、ep4、ep3；`cup_v1` ep0、ep2。
+6. **轨迹结束时物体还拿在手里**：没有放下和回位的动作，结束后请手动处理。
+
+已知的风险和局限：
+- 头部相机支架不在碰撞模型里。
+- 桌子近边的位置是推算的，相机看不到它。不过接近段离桌沿还有约 8 cm 余量。
+- 运动中被夹住的物体只在物理仿真里检查过有没有碰到身体或桌子。
+
+---
+
+## 9. 来源（服务器路径）
+
+- 生成和检查代码：`/home/gaoyiche/HandDemo/real_rby1/scripts/`，主要是 `safe_traj.py`、`export_real.py`、`add_ee_pose.py`、`split_for_robot.py`、`verify_for_robot.py`、`sim_task_replay2.py`、`placement_guide.py`、`replan.py`。
+- 完整输出：`/home/gaoyiche/HandDemo/real_rby1/out/real_prep/for_robot_newstart/`；未压缩的验证视频也在这里。
+- 原始示教数据：`/data/yicheng/HandDemo_uploads/`。

@@ -1,0 +1,34 @@
+{
+ "success": true,
+ "final_lift_m": 0.116,
+ "max_lift_m": 0.229,
+ "gripper_touching_at_end": true,
+ "frames_touching": 1189,
+ "frames_closed": 1190,
+ "n_frames": 1393,
+ "object_final": [
+  0.513,
+  0.157,
+  0.765
+ ],
+ "safety": {
+  "min_arm_table_clearance_m": 0.0651,
+  "self_contact_frames": 0,
+  "robot_table_contact_frames": 0,
+  "max_track_err_rad": 0.009,
+  "max_track_err_frame": 236,
+  "self_contact_pairs": []
+ },
+ "finger_after_close": [
+  0.018,
+  0.0145,
+  0.0145,
+  0.0145,
+  0.0145,
+  0.0145,
+  0.0145,
+  0.0145,
+  0.0145,
+  0.0145
+ ]
+}
