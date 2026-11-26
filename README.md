@@ -24,7 +24,8 @@ start_posture/
 trajectories/
   joint/<task>_ep<i>_s0.5_joint.{csv,npz,json}   # ← 真机执行用：全身关节轨迹
   ee/<task>_ep<i>_s0.5_ee.{csv,npz,json}         # 左臂末端位姿轨迹（训练用的动作标签，不要直接发给机器人，见第 6 节）
-placement/<task>_ep<i>.jpg     # 物体摆放参考：该 episode 示教第一帧 + 物体模型轮廓（绿）+ 抓取点和接近方向（黄）
+placement/<task>_ep<i>.jpg     # 物体摆放参考：该 episode 示教第一帧 + 物体模型轮廓（绿）+ 抓取点和接近方向（黄）+ 物体坐标
+placement/<task>_ep<i>_raw.jpg # 同一帧的原始头部相机画面（无标注，800x500），摆放时直接和真机画面对比
 verification/
   VERIFICATION.txt             # 每个关节文件的仿真回放结果汇总
   videos/*_physics.mp4         # 每个关节文件的物理仿真回放视频（压缩版）
@@ -155,7 +156,10 @@ REJECTED_EPISODES.md, cup_v1_failure_positions.jpg
 ## 4. 物体摆放
 
 轨迹是**开环**的：它是按照示教时物体的位置算出来的。物体必须放在该 episode 示教时的位置：
-- 参考图：`placement/<task>_ep<i>.jpg`。绿色轮廓是物体应在的位置，黄色是抓取点和接近方向。
+- **每条轨迹都有两张对应的头部相机图**：
+  - `placement/<task>_ep<i>_raw.jpg`：示教第一帧的原始画面，没有标注，800×500，和机器人头部相机 `left_raw` 的画面格式一致；
+  - `placement/<task>_ep<i>.jpg`：同一帧加上标注。绿色轮廓是物体模型应在的位置，黄色是抓取点和接近方向，图下方写着物体在机器人 base 坐标系里的位置和朝向。
+- 建议的摆放方法：机器人 reset 到第 3 节的姿态（**头部角度必须一致**，否则画面对不上），打开头部相机画面，和 `_raw.jpg` 叠加或并排对比，把物体挪到画面中完全重合的位置。
 - 头部相机画面应该和参考图对齐。前提是头部角度和录制时一样（`head_joint_1/2` 见 CSV）。
 - 服务器上有对比工具：拍一张当前头部画面，配上当前的 `joint_state`，工具会算出物体需要挪动多少，并给出能否直接回放的判断。
 
